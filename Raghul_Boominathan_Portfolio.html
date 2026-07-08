@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghul Boominathan — Portfolio Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#131110;
+    --bg-panel:#1c1815;
+    --bg-panel-2:#221d18;
+    --accent-amber:#d9a441;
+    --accent-amber-dim:#a67f34;
+    --accent-rust:#b3512b;
+    --text-primary:#f2ecdf;
+    --text-muted:#9c948a;
+    --line:#3a342b;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(217,164,65,0.05), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.5), transparent 70%);
+    z-index:1;
+  }
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 28px 90px; position:relative; z-index:2; }
+
+  .letterbox{ height:22px; background:#000; }
+  .hero-inner{
+    background:
+      linear-gradient(180deg, rgba(217,164,65,0.06), transparent 40%),
+      var(--bg-panel);
+    padding:64px 28px 40px;
+    text-align:center;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.35em;
+    color:var(--accent-amber);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .name{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:clamp(40px, 7.5vw, 68px);
+    letter-spacing:0.02em;
+    line-height:1.05;
+    margin:0 0 10px;
+    text-transform:uppercase;
+  }
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--accent-rust);
+    margin-bottom:18px;
+  }
+  .credit-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:0.03em;
+  }
+  .credit-line em{ font-style:normal; color:var(--accent-amber); }
+
+  section.card{
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-top:none;
+    padding:34px 28px;
+  }
+  .slate{ display:flex; align-items:baseline; gap:12px; margin-bottom:24px; }
+  .slate-num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent-amber);
+    font-size:12px;
+    letter-spacing:0.15em;
+  }
+  .section-heading{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+  }
+  .section-sub{
+    font-family:'Inter', sans-serif;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  /* Masonry mosaic via CSS columns */
+  .mosaic{
+    column-count:3;
+    column-gap:14px;
+  }
+  .tile{
+    break-inside:avoid;
+    margin-bottom:14px;
+    position:relative;
+    border:1px solid var(--line);
+    background:#000;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .tile::after{
+    content:attr(data-tag);
+    position:absolute;
+    top:8px;
+    left:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent-amber);
+    background:rgba(0,0,0,0.55);
+    padding:3px 7px;
+    border:1px solid rgba(217,164,65,0.35);
+    border-radius:2px;
+    pointer-events:none;
+    z-index:2;
+  }
+  .tile.vertical{ aspect-ratio:9/16; }
+  .tile.horizontal{ aspect-ratio:16/9; }
+  .tile iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+    background:#000;
+  }
+
+  .reel-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    margin-top:20px;
+    letter-spacing:0.02em;
+  }
+  .reel-note a{ color:var(--accent-amber); text-decoration:none; }
+  .reel-note a:hover{ text-decoration:underline; }
+
+  .end-credits{
+    text-align:center;
+    padding:46px 28px 20px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-top:none;
+  }
+  .end-credits .fin{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.4em;
+    color:var(--accent-amber);
+    margin-bottom:18px;
+  }
+  .end-credits .contact{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+  }
+  .end-credits .contact span:not(:last-child)::after{ content:"•"; margin-left:10px; color:var(--line); }
+
+  @media (max-width:900px){
+    .mosaic{ column-count:2; }
+  }
+  @media (max-width:600px){
+    .hero-inner{ padding:48px 18px 30px; }
+    section.card{ padding:26px 18px; }
+    .mosaic{ column-count:1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="letterbox"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">Now Screening</div>
+      <h1 class="name">RAGHUL BOOMINATHAN</h1>
+      <div class="role">Portfolio Reel</div>
+      <div class="credit-line">Shot <em>&amp;</em> Edited by Raghul Boominathan</div>
+    </div>
+    <div class="letterbox"></div>
+  </div>
+
+  <section class="card">
+    <div class="slate">
+      <span class="slate-num">REEL</span>
+      <div class="slate-title">
+        <h2 class="section-heading">Selected Work</h2>
+        <span class="section-sub">Video Portfolio</span>
+      </div>
+    </div>
+
+    <div class="mosaic">
+      <div class="tile vertical" data-tag="01"><iframe src="https://drive.google.com/file/d/1iKG1jC-FdHOJavnTeT55yyr1z8pQwkkJ/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="02"><iframe src="https://drive.google.com/file/d/1FJTGqUmkAmnfiQQQrc-NGTtyI0iD6PdP/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="03"><iframe src="https://drive.google.com/file/d/1oGCxO1tzXYrAVywyMCgEB9KBepHkTC56/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="04"><iframe src="https://drive.google.com/file/d/1sRDoLR-DKfupHKNepmwYaiGYinUTGUn2/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="05"><iframe src="https://drive.google.com/file/d/1Q89itlTJwle0V0Iu5RSqtNbGl_yJRxGy/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="06"><iframe src="https://drive.google.com/file/d/1myGNCW29-gW7iSPzXjsuKve5NkVyxjLB/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="07"><iframe src="https://drive.google.com/file/d/1LsKY9pO-JHoQgXVazy7-BbOf4J-xbeXI/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="08"><iframe src="https://drive.google.com/file/d/1DUZLazdVL4mzm9ACjexs8sHFAWeRiS0b/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="09"><iframe src="https://drive.google.com/file/d/18vTV8ywk4HyZG8P6kprW2Tsvo6H6-n-O/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="10"><iframe src="https://drive.google.com/file/d/12MJ5ErXHxyi9Ma_QU_hJqsqN7wjEQlfa/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="11"><iframe src="https://drive.google.com/file/d/1tVI0E1j9JVVsSG5eaufGWJ9Z286KIdQt/preview" allow="autoplay"></iframe></div>
+      <div class="tile vertical" data-tag="12"><iframe src="https://drive.google.com/file/d/1dT29NFQs2P4LP6tTIwQ55NbWQa6iw3gw/preview" allow="autoplay"></iframe></div>
+    </div>
+  </section>
+
+  <div class="end-credits">
+    <div class="fin">FIN.</div>
+    <div class="contact">
+      <span>rahulcinephile@gmail.com</span>
+      <span>+91 82700-55270</span>
+      <span>Bengaluru, India</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

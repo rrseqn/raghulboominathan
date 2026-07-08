@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghul Boominathan - Videographer &amp; Video Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#131110;
+    --bg-panel:#1c1815;
+    --bg-panel-2:#221d18;
+    --accent-amber:#d9a441;
+    --accent-amber-dim:#a67f34;
+    --accent-rust:#b3512b;
+    --text-primary:#f2ecdf;
+    --text-muted:#9c948a;
+    --line:#3a342b;
+    --gap-track:#2a251f;
+  }
+
+  *{ box-sizing:border-box; }
+
+  h1,h2,h3{ margin:0; font-weight:inherit; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+
+  /* subtle film-grain vignette */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(217,164,65,0.05), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.5), transparent 70%);
+    z-index:1;
+  }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:0 28px 90px; position:relative; z-index:2; }
+
+  /* ---------- HERO / TITLE CARD ---------- */
+  .hero{
+    position:relative;
+    margin-bottom:10px;
+  }
+  .letterbox{
+    height:22px;
+    background:#000;
+  }
+  .hero-inner{
+    background:
+      linear-gradient(180deg, rgba(217,164,65,0.06), transparent 40%),
+      var(--bg-panel);
+    padding:64px 28px 40px;
+    text-align:center;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.35em;
+    color:var(--accent-amber);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .name{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:clamp(40px, 7.5vw, 68px);
+    letter-spacing:0.02em;
+    line-height:1.05;
+    margin:0 0 10px;
+    color:var(--text-primary);
+    text-transform:uppercase;
+  }
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--accent-rust);
+    margin-bottom:30px;
+  }
+  .role span{ color:var(--text-muted); }
+
+  .contact-strip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:0.02em;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .contact-strip span:not(:last-child)::after{ content:"•"; margin-left:10px; color:var(--line); }
+
+  .runtime{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    border:1px solid var(--line);
+    padding:10px 22px;
+    border-radius:2px;
+    background:rgba(0,0,0,0.25);
+  }
+  .runtime-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .runtime-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:20px;
+    letter-spacing:0.08em;
+    color:var(--accent-amber);
+    font-variant-numeric:tabular-nums;
+  }
+  .runtime-value .unit{ font-size:10px; color:var(--text-muted); margin-right:14px; letter-spacing:0.05em; }
+
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .btn-portfolio{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:#1c1815;
+    background:var(--accent-amber);
+    padding:12px 24px;
+    border-radius:2px;
+    border:1px solid var(--accent-amber);
+    transition:background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-portfolio:hover{
+    background:#eab85a;
+    transform:translateY(-1px);
+    box-shadow:0 4px 14px rgba(217,164,65,0.25);
+  }
+  .btn-portfolio:focus-visible{
+    outline:2px solid var(--text-primary);
+    outline-offset:2px;
+  }
+
+  .footer-link{
+    color:var(--accent-amber);
+    text-decoration:none;
+  }
+  .footer-link:hover{ text-decoration:underline; }
+
+  /* ---------- TIMELINE (signature element) ---------- */
+  .timeline-section{
+    background:var(--bg-panel);
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 28px 32px;
+  }
+  .timeline-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:14px;
+  }
+  .timeline-track{
+    display:flex;
+    width:100%;
+    height:46px;
+    border-radius:3px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .clip{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:#1c1815;
+    text-decoration:none;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:2px solid var(--bg-void);
+    transition:filter .2s ease, transform .2s ease;
+  }
+  a.clip{ cursor:pointer; }
+  a.clip:hover{ filter:brightness(1.18); transform:translateY(-1px); }
+  a.clip:focus-visible{ outline:2px solid var(--text-primary); outline-offset:-3px; }
+  .clip:last-child{ border-right:none; }
+  .clip.job1{ background:var(--accent-amber); }
+  .clip.job2{ background:var(--accent-rust); color:#f2ecdf; }
+  .clip.job3{ background:var(--accent-amber-dim); }
+  .clip.gap{
+    background:repeating-linear-gradient(45deg, var(--gap-track), var(--gap-track) 6px, #251f19 6px, #251f19 12px);
+  }
+  .clip-label{ padding:0 6px; }
+  .timeline-years{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px; color:var(--text-muted);
+    margin-top:8px;
+  }
+
+  /* ---------- GENERIC SECTION ---------- */
+  section.card{
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-top:none;
+    padding:34px 28px;
+  }
+  section.card + section.card{ border-top:1px solid var(--line); }
+
+  .slate{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom:18px;
+  }
+  .slate-title{ display:flex; flex-direction:column; gap:2px; }
+  .slate-num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent-amber);
+    font-size:12px;
+    letter-spacing:0.15em;
+  }
+  .section-heading{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:0.01em;
+    color:var(--text-primary);
+    text-transform:uppercase;
+  }
+  .section-sub{
+    font-family:'Inter', sans-serif;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  .logline{
+    font-size:16px;
+    color:var(--text-primary);
+    max-width:64ch;
+  }
+  .logline em{
+    font-style:normal;
+    color:var(--accent-amber);
+  }
+
+  /* Equipment / skills as gear tags */
+  .gear-group{ margin-bottom:20px; }
+  .gear-group:last-child{ margin-bottom:0; }
+  .gear-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--accent-rust);
+    margin-bottom:10px;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-primary);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:2px;
+    background:rgba(217,164,65,0.04);
+  }
+
+  /* Filmography entries */
+  .film-entry{
+    border-left:2px solid var(--line);
+    padding:2px 0 2px 22px;
+    margin-bottom:30px;
+    position:relative;
+    transition:border-color .3s ease, background-color .3s ease;
+    scroll-margin-top:24px;
+  }
+  .film-entry:target{
+    border-left-color:var(--accent-amber);
+    background-color:rgba(217,164,65,0.06);
+  }
+  .film-entry:last-child{ margin-bottom:0; }
+  .film-entry::before{
+    content:"";
+    position:absolute;
+    left:-5px; top:6px;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--accent-amber);
+  }
+  .film-head{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;
+    gap:6px 16px;
+    margin-bottom:4px;
+  }
+  .film-title{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.01em;
+    color:var(--text-primary);
+    text-transform:uppercase;
+  }
+  .film-role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent-rust);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .film-dates{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    white-space:nowrap;
+  }
+  ul.notes{ margin:10px 0 0; padding-left:18px; }
+  ul.notes li{
+    font-size:14.5px;
+    color:var(--text-primary);
+    margin-bottom:6px;
+  }
+  ul.notes li::marker{ color:var(--accent-amber); }
+
+  /* Education */
+  .edu-row{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; }
+  .edu-degree{ font-size:16px; font-weight:600; }
+  .edu-date{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-muted); }
+
+  /* End credits / footer */
+  .end-credits{
+    text-align:center;
+    padding:46px 28px 20px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-top:none;
+  }
+  .end-credits .fin{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.4em;
+    color:var(--accent-amber);
+    margin-bottom:18px;
+  }
+  .end-credits .contact{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+  }
+  .end-credits .contact span:not(:last-child)::after{ content:"•"; margin-left:10px; color:var(--line); }
+
+  @media (max-width:600px){
+    .wrap{ padding:0 16px 50px; }
+    .letterbox{ height:14px; }
+    .hero-inner{ padding:34px 18px 22px; }
+    .eyebrow{ font-size:10px; letter-spacing:0.28em; margin-bottom:12px; }
+    .name{ font-size:clamp(32px, 10vw, 44px); margin-bottom:6px; }
+    .role{ font-size:11px; letter-spacing:0.18em; margin-bottom:20px; }
+    .contact-strip{ font-size:11px; gap:6px 8px; margin-bottom:22px; }
+    .runtime{ padding:8px 16px; gap:10px; }
+    .runtime-value{ font-size:16px; }
+    .hero-actions{ flex-direction:column; gap:12px; }
+    .btn-portfolio{ font-size:11px; padding:11px 20px; width:100%; justify-content:center; }
+
+    .timeline-section{ padding:16px 16px 20px; }
+    .timeline-title{ font-size:9px; margin-bottom:10px; }
+    .timeline-track{ height:34px; }
+    .timeline-years{ font-size:9px; }
+
+    section.card{ padding:22px 16px; }
+    .slate{ margin-bottom:14px; }
+    .section-heading{ font-size:19px; }
+    .section-sub{ font-size:10px; }
+    .logline{ font-size:14.5px; }
+
+    .gear-group{ margin-bottom:16px; }
+    .gear-label{ margin-bottom:8px; }
+    .tag{ font-size:11px; padding:5px 10px; }
+
+    .film-entry{ padding-left:16px; margin-bottom:22px; }
+    .film-title{ font-size:16px; }
+    .film-role{ font-size:11px; }
+    .film-dates{ font-size:10px; }
+    ul.notes{ padding-left:16px; }
+    ul.notes li{ font-size:13.5px; margin-bottom:4px; }
+
+    .edu-degree{ font-size:14.5px; }
+
+    .end-credits{ padding:30px 18px 16px; }
+    .end-credits .fin{ font-size:14px; margin-bottom:12px; }
+    .end-credits .contact{ font-size:11px; }
+
+    .film-head{ flex-direction:column; align-items:flex-start; }
+    .clip-label{ display:none; }
+  }
+
+  @media (max-width:380px){
+    .contact-strip span:not(:last-child)::after{ content:""; margin-left:0; }
+    .contact-strip{ flex-direction:column; gap:3px; }
+  }
+
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="letterbox"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">Now Screening</div>
+      <h1 class="name">RAGHUL BOOMINATHAN</h1>
+      <div class="role">Videographer <span>&amp;</span> Video Editor</div>
+      <div class="contact-strip">
+        <span>Bengaluru, India</span>
+        <span>rahulcinephile@gmail.com</span>
+        <span>+91 82700-55270</span>
+      </div>
+      <div class="hero-actions">
+        <div class="runtime">
+          <span class="runtime-label">Total Runtime</span>
+          <span class="runtime-value"><span class="unit">YRS</span>04 <span class="unit">MOS</span>05</span>
+        </div>
+        <a class="btn-portfolio" href="Raghul_Boominathan_Portfolio.html">▶ View Portfolio Reel</a>
+      </div>
+    </div>
+    <div class="letterbox"></div>
+  </div>
+
+  <div class="timeline-section">
+    <div class="timeline-title">Production Timeline: Feb 2022 to Present</div>
+    <div class="timeline-track">
+      <a class="clip job1" href="#nakkalites" style="flex-basis:24.5%;" title="Nakkalites, Feb 2022 to Mar 2023"><span class="clip-label">NAKKALITES</span></a>
+      <div class="clip gap" style="flex-basis:18.9%;" title="Between engagements"></div>
+      <a class="clip job2" href="#infozub" style="flex-basis:37.7%;" title="Infozub, Jan 2024 to Sep 2025"><span class="clip-label">INFOZUB</span></a>
+      <div class="clip gap" style="flex-basis:5.7%;" title="Transition, caregiving"></div>
+      <a class="clip job3" href="#freelance" style="flex-basis:13.2%;" title="Freelance, Dec 2025 to Present"><span class="clip-label">FREELANCE</span></a>
+    </div>
+    <div class="timeline-years"><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+  </div>
+
+  <section class="card">
+    <div class="slate">
+      <span class="slate-num">SC. 01</span>
+      <div class="slate-title">
+        <h2 class="section-heading">Logline</h2>
+        <span class="section-sub">Professional Summary</span>
+      </div>
+    </div>
+    <p class="logline">A videographer and editor with <em>3+ years</em> across YouTube production, agency work, and freelance projects, comfortable behind the camera and inside the timeline. Handles client requirements directly, leads small crews on set, and cuts the final footage into something worth watching. Currently running an independent freelance practice while working close to home.</p>
+  </section>
+
+  <section class="card">
+    <div class="slate">
+      <span class="slate-num">SC. 02</span>
+      <div class="slate-title">
+        <h2 class="section-heading">Equipment &amp; Tools</h2>
+        <span class="section-sub">Skills</span>
+      </div>
+    </div>
+    <div class="gear-group">
+      <div class="gear-label">Post-Production</div>
+      <div class="tag-row">
+        <span class="tag">Adobe Premiere Pro</span>
+        <span class="tag">Adobe After Effects</span>
+        <span class="tag">Final Cut Pro</span>
+        <span class="tag">Adobe Photoshop</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Canva</span>
+      </div>
+    </div>
+    <div class="gear-group">
+      <div class="gear-label">On Set</div>
+      <div class="tag-row">
+        <span class="tag">DSLR &amp; Mirrorless Cameras</span>
+        <span class="tag">Cinematic-Style Shooting</span>
+        <span class="tag">Shot Planning</span>
+        <span class="tag">On-Set Direction</span>
+      </div>
+    </div>
+    <div class="gear-group">
+      <div class="gear-label">Production Management</div>
+      <div class="tag-row">
+        <span class="tag">Client Requirement Gathering</span>
+        <span class="tag">Crew Leadership</span>
+        <span class="tag">Quality Control</span>
+        <span class="tag">Deadline Delivery</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="slate">
+      <span class="slate-num">SC. 03</span>
+      <div class="slate-title">
+        <h2 class="section-heading">Filmography</h2>
+        <span class="section-sub">Work Experience</span>
+      </div>
+    </div>
+
+    <div class="film-entry" id="freelance">
+      <div class="film-head">
+        <div>
+          <h3 class="film-title">Freelance Video Projects</h3>
+          <div class="film-role">Videographer &amp; Editor, Self-Employed</div>
+        </div>
+        <div class="film-dates">Dec 2025 to Present</div>
+      </div>
+      <ul class="notes">
+        <li>Moved to remote freelance work to balance production commitments with family caregiving responsibilities</li>
+        <li>Delivering end-to-end video editing for client projects, managing timelines and revisions independently</li>
+        <li>Selectively taking on shoots that fit a remote-friendly schedule while holding output quality steady</li>
+      </ul>
+    </div>
+
+    <div class="film-entry" id="infozub">
+      <div class="film-head">
+        <div>
+          <h3 class="film-title">Infozub</h3>
+          <div class="film-role">Cinematographer &amp; Video Editor, Digital Marketing Agency</div>
+        </div>
+        <div class="film-dates">Jan 2024 to Sep 2025</div>
+      </div>
+      <ul class="notes">
+        <li>Lead cinematographer on client shoots across India for the first 5 months, running on-site production and direct client meetings to confirm creative requirements</li>
+        <li>Led a 3-person camera team with 2 junior cinematographers to scale shoot capacity without losing visual quality</li>
+        <li>Edited video content across multiple client accounts, supporting the agency's digital marketing deliverables end-to-end</li>
+      </ul>
+    </div>
+
+    <div class="film-entry" id="nakkalites">
+      <div class="film-head">
+        <div>
+          <h3 class="film-title">Nakkalites</h3>
+          <div class="film-role">Cinematographer, Tamil YouTube Channel</div>
+        </div>
+        <div class="film-dates">Feb 2022 to Mar 2023</div>
+      </div>
+      <ul class="notes">
+        <li>Completed a 6-month learning phase as Assistant Cinematographer, building foundational production and camera skills</li>
+        <li>Promoted to Cinematographer for the remaining 7 months, shooting content independently for channel projects</li>
+        <li>Coordinated with the production team to deliver raw footage that met the channel's quality standards and deadlines</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="slate">
+      <span class="slate-num">SC. 04</span>
+      <div class="slate-title">
+        <h2 class="section-heading">Academic Credit</h2>
+        <span class="section-sub">Education</span>
+      </div>
+    </div>
+    <div class="edu-row">
+      <span class="edu-degree">B.Sc. Mathematics</span>
+      <span class="edu-date">Graduated June 2022</span>
+    </div>
+  </section>
+
+  <div class="end-credits">
+    <div class="fin">FIN.</div>
+    <div class="contact">
+      <span>rahulcinephile@gmail.com</span>
+      <span>+91 82700-55270</span>
+      <span>Bengaluru, India</span>
+      <span><a href="Raghul_Boominathan_Portfolio.html" class="footer-link">View Portfolio Reel</a></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
